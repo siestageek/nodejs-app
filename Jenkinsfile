@@ -10,7 +10,7 @@ pipeline {
         stage('docker build') {
             steps {
 			sh '''
-			docker compose build
+			IMAGE_NAME=siestageek/nodejsapp docker compose build
 			'''
             }
         }
@@ -25,9 +25,14 @@ pipeline {
             steps {
 			sh '''
 			docker login -u siestageek -p AudvnaWlwl@72
-   			docker push zzyzzy/webapp
+   			docker push siestageek/nodejsapp
 			'''
             }
-        }	    
+        }
+	 stage('microk8s run pod') {
+            steps {
+                sh ' microk8s kubectl run app1 --image=siestageek/nodejsapp '
+            }
+        }   
     }
 }
