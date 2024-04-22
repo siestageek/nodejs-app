@@ -24,7 +24,7 @@ pipeline {
 	stage('docker push') {
             steps {
 			sh '''
-			docker login -u siestageek -p AudvnaWlwl@72
+			docker login -u siestageek -p 
    			docker push siestageek/nodejsapp
 			'''
             }
